@@ -5,10 +5,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deploy a Remix Contract</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+
 </head>
 
 <body>
+    <div>
+        <h1>Deploy a Remix Contract</h1>
+    </div>
 
+
+    <script>
+        // Connect the web3 provider
+        if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
+        }
+
+        // Set a default account
+        web3.eth.defaultAccount = web3.eth.accounts[1];
+
+        // Get the contract address
+        let RemixContract = new web3.eth.Contract([{
+                "constant": false,
+                "inputs": [{
+                    "name": "x",
+                    "type": "string"
+                }],
+                "name": "setMessage",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "getMessage",
+                "outputs": [{
+                    "name": "",
+                    "type": "string"
+                }],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            }
+        ], '0xad11566AF8FbFa72623Dd1Df8eaAd5243FE145EA');
+
+        // let myMessage = RemixContract.at('0xad11566AF8FbFa72623Dd1Df8eaAd5243FE145EA');
+
+        console.log(RemixContract.methods);
+    </script>
 </body>
 
 </html>
