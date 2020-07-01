@@ -11,12 +11,39 @@
 </head>
 
 <body>
-    <div>
+    <div id="app">
         <h1>Deploy a Remix Contract</h1>
+        <some-component>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <script>
+        Vue.config.devtools = true;
+
+        Vue.component('some-component', {
+            template: `<p>Some component</p>`
+        })
+
+        let vue = new Vue({
+            el: '#app',
+            data() {
+                return {
+
+                }
+            },
+            methods: {
+
+            },
+            mounted() {
+                // alert("Mounted");
+            }
+
+        });
+
+        // console.log(Vue)
+
+
         // Connect the web3 provider
         if (typeof web3 !== 'undefined') {
             web3 = new Web3(web3.currentProvider);
